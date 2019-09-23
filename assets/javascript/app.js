@@ -70,7 +70,7 @@ $('#timer').hide()
 function nextQuestion(){
     var questionOver = (questions.length -1) === currentQuestion
     if (questionOver) {
-    console.log(questionOver)
+        resultDisplay()
     } else {
     currentQuestion++;
     loadQuestions();
@@ -137,5 +137,22 @@ $(document).on('click', '.ans', function (){
     }
 });
 
+function resultDisplay () {
+    $('#game').html('<h4>' + 'Correct Answers :' + correct + '</h4>')
+    $('#game').append('<h4>'+ 'Incorrect Answers :' +  incorrect + '</h4>')
+    $('#game').append('<h4>'+ 'Total Questions :' +  questions.length + '</h4>')
+    console.log(questions.length)
+    $('#game').append('<button id=reset>' + 'Reset Game' +  '</button>')
+}
+
+$(document).on('click', '#reset', function (){
+    counter = 10;
+    currentQuestion = 0;
+    correct = 0;
+    incorrect = 0;
+    timer = null;
+    loadQuestions();
+
+});
 
 gameStart();
