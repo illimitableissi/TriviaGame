@@ -55,41 +55,64 @@ var questions = [
 },
 ]   
 // Initial Values
-var counter = 60;
-var currentQuestion = 2;
+var counter = 10;
+var currentQuestion = 0;
 var correct = 0;
 var incorrect = 0;
 var timer;
 
-function timeUp () {
-    clearInterval(timer);
+//Hides html elements outside of start button
+$('#game').hide()
+$('#timer').hide()
+
+
+
+function nextQuestion(){
+    var questionOver = (questions.length -1) === currentQuestion
+    if (questionOver) {
+    console.log(questionOver)
+    } else {
+    currentQuestion++;
+    loadQuestions();
+    }
 }
 
+//Function that changes questions when timer reachs 0
+function timeUp () {
+    clearInterval(timer);
+    incorrect++;
+    nextQuestion();
+}
+//Function that controls countdown timer
 function countDown() {
     counter--;
-    $('#timer').html('Timer:' + counter);
+    $('#timer').html('Timer: ' + counter);
     if (counter === 0){
         timeUp()
     }
 
 }
-
-var gameStart = $("#startButton").on('click', function(){
+//Function that starts game
+function gameStart () { 
+    $("#startButton").on('click', function(){
     $('#startButton').hide();
-
+    $('#game').show()
+    $('#timer').show()
+    loadQuestions()
 });
+}
 
-//loops through questions
+//Function that loads questions
 function loadQuestions () {
-    counter =60;
+    counter =10;
     timer = setInterval(countDown, 1000);
     var questionOne = questions[currentQuestion].question
     var answerOne = questions[currentQuestion].answer
-    $('#timer').html('Timer:' + counter);
+    $('#timer').html('Timer: ' + counter);
     $('#game').html('<h4>' + questionOne + '</h4>'); 
     $('#game').append(loadChoices(answerOne))
 }
-
+//Function that loads answer choices
 function loadChoices (answerOne) {
     var result = '';
     for (var i = 0; i < 4; i++) {
@@ -99,4 +122,4 @@ function loadChoices (answerOne) {
     return result;
 }
 
-loadQuestions();
+gameStart();
