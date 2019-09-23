@@ -3,12 +3,12 @@ var questions = [
 {
     question: "Whos death pushed Goku to go Super Saiyan for the first time?",
     answer: ["Gohan", "Piccolo","Tien","Krillin"],
-    correct: "Krillen",
+    correct: "Krillin",
 },
 {
     question:"Which fusion only lasts for 30 minutes?",
     answer: ["Potara Fusion","Fusion Dance", "Namekian Fusion", "Majin Fusion"],
-    correct: "Fushion Dance",
+    correct: "Fusion Dance",
 },
 {
     question:"Which universe won the Tournament of Power?",
@@ -77,7 +77,7 @@ function nextQuestion(){
     }
 }
 
-//Function that changes questions when timer reachs 0
+//Function that changes question when timer reachs 0
 function timeUp () {
     clearInterval(timer);
     incorrect++;
@@ -116,10 +116,26 @@ function loadQuestions () {
 function loadChoices (answerOne) {
     var result = '';
     for (var i = 0; i < 4; i++) {
-        console.log(answerOne[i])
         result += ('<p class=ans' + ' ' + 'data-answer=' + answerOne[i] +  '> ' + answerOne[i] + ' ' + '</p>');  
     }
     return result;
 }
+
+$(document).on('click', '.ans', function (){
+    clearInterval(timer)
+    var selectedAnswer = $(this).attr('data-answer');
+    var correctAnswer = questions[currentQuestion].correct;
+
+    if (correctAnswer === selectedAnswer) {
+        correct++
+        nextQuestion();
+        console.log("win")
+    } else{
+        incorrect++
+        nextQuestion();
+        console.log("loss")
+    }
+});
+
 
 gameStart();
