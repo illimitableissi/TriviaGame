@@ -53,3 +53,28 @@ var questions = [{
     correct: "Hercule"
 },
 ]   
+
+var counter = 60;
+var correct = 0;
+var incorrect = 0;
+var timer;
+
+var gameStart = $("#startButton").on('click', function(){
+    $('#startButton').hide();
+    $('#actualGame').show();
+});
+
+//loops through questions
+function loadQuestions () {
+    $('#time-remain').html(counter);
+for (var q = 0; q < 11; q++) {
+    $('#questions').append('<h5>' + questions[q].ques + '</h5>' + '<hr />');
+    console.log(questions[q].ques)
+    for (var a = 0; a < 4; a++) {
+    $('#answers').append('<label for =' + questions[q].ans[a] + '</label>')
+    console.log(questions[q].ans[a])
+ }
+}
+}
+
+loadQuestions()
