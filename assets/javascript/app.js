@@ -4,6 +4,7 @@ var questions = [
     question: "Whos death pushed Goku to go Super Saiyan for the first time?",
     answer: ["Gohan", "Piccolo","Tien","Krillin"],
     correct: "Krillin",
+    image: "/assets/images/Krillin.gif",
 },
 {
     question:"Which fusion only lasts for 30 minutes?",
@@ -55,7 +56,7 @@ var questions = [
 },
 ]   
 // Initial Values
-var counter = 10;
+var counter = 15;
 var currentQuestion = 0;
 var correct = 0;
 var incorrect = 0;
@@ -104,7 +105,7 @@ function gameStart () {
 
 //Function that loads questions
 function loadQuestions () {
-    counter =10;
+    counter =15;
     timer = setInterval(countDown, 1000);
     var questionOne = questions[currentQuestion].question
     var answerOne = questions[currentQuestion].answer
@@ -121,6 +122,7 @@ function loadChoices (answerOne) {
     return result;
 }
 
+//Function determines if clicked answer is correct ot incorrect
 $(document).on('click', '.ans', function (){
     clearInterval(timer)
     var selectedAnswer = $(this).attr('data-answer');
@@ -128,23 +130,23 @@ $(document).on('click', '.ans', function (){
 
     if (correctAnswer === selectedAnswer) {
         correct++
-        nextQuestion();
-        console.log("win")
+        imageShow();
+        setTimeout(nextQuestion, 3 * 1000);
     } else{
         incorrect++
         nextQuestion();
-        console.log("loss")
     }
 });
 
+//Function controls what is displayed on game end
 function resultDisplay () {
     $('#game').html('<h4>' + 'Correct Answers :' + correct + '</h4>')
     $('#game').append('<h4>'+ 'Incorrect Answers :' +  incorrect + '</h4>')
     $('#game').append('<h4>'+ 'Total Questions :' +  questions.length + '</h4>')
-    console.log(questions.length)
     $('#game').append('<button id=reset>' + 'Reset Game' +  '</button>')
 }
 
+//Function resets game after game ends
 $(document).on('click', '#reset', function (){
     counter = 10;
     currentQuestion = 0;
@@ -154,5 +156,10 @@ $(document).on('click', '#reset', function (){
     loadQuestions();
 
 });
+
+function imageShow() {
+    $('#game').html('<h3>' + 'Correct' + '</h3>')
+    $('#game').append(questions[currentQuestion].image)
+}
 
 gameStart();
