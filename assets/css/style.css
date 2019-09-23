@@ -7,3 +7,9 @@ body {
     background-color: white
 
 }
+
+.ans {
+    cursor: pointer;
+    border: 1px;
+    padding: 10px;
+}

@@ -12,7 +12,7 @@ var questions = [
 },
 {
     question:"Which universe won the Tournament of Power?",
-    answerr: ["Universe 9", "Universe 7", "Universe 5","Universe 8"],
+    answer: ["Universe 9", "Universe 7", "Universe 5","Universe 8"],
     correct: "Universe 7"
 },
 {
@@ -56,17 +56,33 @@ var questions = [
 ]   
 // Initial Values
 var counter = 60;
-var currentQuestion = 0;
+var currentQuestion = 2;
 var correct = 0;
 var incorrect = 0;
 var timer;
 
+function timeUp () {
+    clearInterval(timer);
+}
+
+function countDown() {
+    counter--;
+    $('#timer').html('Timer:' + counter);
+    if (counter === 0){
+        timeUp()
+    }
+
+}
+
 var gameStart = $("#startButton").on('click', function(){
     $('#startButton').hide();
+
 });
 
 //loops through questions
 function loadQuestions () {
+    counter =60;
+    timer = setInterval(countDown, 1000);
     var questionOne = questions[currentQuestion].question
     var answerOne = questions[currentQuestion].answer
     $('#timer').html('Timer:' + counter);
