@@ -4,7 +4,7 @@ var questions = [
     question: "Whos death pushed Goku to go Super Saiyan for the first time?",
     answer: ["Gohan", "Piccolo","Tien","Krillin"],
     correct: "Krillin",
-    image: "/assets/images/Krillin.gif",
+    image: './assets/images/krillin.gif',
 },
 {
     question:"Which fusion only lasts for 30 minutes?",
