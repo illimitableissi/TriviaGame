@@ -101,7 +101,7 @@ function timeUp () {
 //Function that controls countdown timer
 function countDown() {
     counter--;
-    $('#timer').html('Timer: ' + counter);
+    $('#timer').html(counter);
     if (counter === 0){
         timeUp()
     }
@@ -111,6 +111,7 @@ function countDown() {
 function gameStart () { 
     $("#startButton").on('click', function(){
     $('#startButton').hide();
+    $('#instructions').hide();
     $('#game').show()
     $('#timer').show()
     loadQuestions()
@@ -123,7 +124,7 @@ function loadQuestions () {
     timer = setInterval(countDown, 1000);
     var questionOne = questions[currentQuestion].question
     var answerOne = questions[currentQuestion].answer
-    $('#timer').html('Timer: ' + counter);
+    $('#timer').html(counter);
     $('#game').html('<h4>' + questionOne + '</h4>'); 
     $('#game').append(loadChoices(answerOne))
 }
@@ -131,7 +132,7 @@ function loadQuestions () {
 function loadChoices (answerOne) {
     var result = '';
     for (var i = 0; i < 4; i++) {
-        result += ('<p class=ans' + ' ' + 'data-answer=' + answerOne[i] +  '> ' + answerOne[i] + ' ' + '</p>');  
+        result += ('<p class=ans' + ' ' + 'data-answer=' + answerOne[i] +  '> ' + answerOne[i] + ' ' + '</p>' + '<br>');  
     }
     return result;
 }

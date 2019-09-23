@@ -4,17 +4,23 @@ body {
 }
 
 .container {
-    background-color: white
+    background-color: white;
 
 }
 
 .ans {
     cursor: pointer;
-    border: 1px;
-    padding: 10px;
+    border: 1px solid gray;
+    padding:10px;
 }
 
 img {
     height: 300px;
     width: 500px;
+}
+
+#timer{
+    font-size: 50px;
+    color: red
+
 }
