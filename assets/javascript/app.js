@@ -95,7 +95,7 @@ function timeUp () {
     clearInterval(timer);
     incorrect++;
     $('#game').html('<h5>' + 'Time is up! The correct answer was ' + questions[currentQuestion].correct + '</h5>')
-    $('#game').append('<img src=' + questions[currentQuestion].image + '>')
+    $('#game').append("<img src =" + questions[currentQuestion].image + ">")
     setTimeout(nextQuestion, 3 * 1000);
 }
 //Function that controls countdown timer
@@ -147,12 +147,12 @@ $(document).on('click', '.ans', function (){
     if (correctAnswer === selectedAnswer) {
         correct++
         $('#game').html('<h3>' + 'Correct!' + '</h3>')
-        $('#game').append('<img src=' + correctImage + '>')
+        $('#game').append("<img src =" + correctImage + ">")
         setTimeout(nextQuestion, 3 * 1000);
     } else{
         incorrect++
         $('#game').html('<h5>' + 'Incorrect! The correct answer was ' + correctAnswer + '</h5>')
-        $('#game').append('<img src=' + correctImage + '>')
+        $('#game').append("<img src =" + correctImage + ">")
         setTimeout(nextQuestion, 3 * 1000)
     }
 });
